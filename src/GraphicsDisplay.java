@@ -1,5 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -60,6 +63,23 @@ public class GraphicsDisplay extends JPanel {
             }
         }
 
+
+    }
+
+    public void saveToTextFile(File selectedFile) {
+        try {
+            PrintStream out = new PrintStream(selectedFile);
+            out.println("Результаты скорректированых значений");
+            Iterator var4 = this.graphicsData.iterator();
+
+            while(var4.hasNext()) {
+                Double[] point = (Double[])var4.next();
+                out.println(point[0] + " " + point[1]);
+            }
+
+            out.close();
+        } catch (FileNotFoundException var5) {
+        }
 
     }
 
